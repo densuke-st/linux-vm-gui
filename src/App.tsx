@@ -14,7 +14,7 @@ function App() {
   }
 
   async function getVmState(){
-    await setVmState("ここでDockerの状態を表示");
+    await setVmState("ここでVMの状態を表示");
   }
 
 
