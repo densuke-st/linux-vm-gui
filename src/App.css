@@ -5,3 +5,7 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafb);
 }
+
+p {
+  line-height: 0.3; /* 行間を1.5倍に設定 */
+}
