@@ -2,6 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use bollard::Docker;
+use tauri::api::version;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -23,19 +24,11 @@ async fn main() {
 
 #[tauri::command]
 async fn get_info() -> Result<String, String> {
-    let info = get_docker_info().await;
-    //Ok("Ok".to_string())
-    if info.is_err() {
-        return Err(String::from("接続できません"));
-    }
-    Ok(info.unwrap())
-}
-
-async fn get_docker_info() -> Result<String, String> {
     let docker = Docker::connect_with_local_defaults().unwrap();
     let info = docker.version().await;
     if info.is_err() {
-        return Err(String::from("接続できません"));
+        return Err(String::from("応答無し"));
     }
+
     Ok(info.unwrap().version.unwrap())
 }
