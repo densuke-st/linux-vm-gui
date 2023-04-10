@@ -10,7 +10,10 @@ function App() {
   const [vmState, setVmState] = useState(""); // VMの状態を持つ
 
   async function getDockerState(){
-    await setDockerState("ここでDockerの状態を表示");
+    //await setDockerState("ここでDockerの状態を表示");
+    invoke('get_info')
+    .then( message => setDockerState(`稼働中(${message})`))
+    .catch( message => setDockerState(`接続できません(${message})`))
   }
 
   async function getVmState(){
